@@ -4,8 +4,8 @@ const Header = () => {
     return (
         <div className="flex items-center justify-end">
 
-            <h1>Hello <br /> lala </h1>
-            <button>Log Out</button>
+            <h1 className="text-2xl font-medium">Hello <br /> <span className="text-3xl font-semibold">Lala</span> </h1>
+            <button className="bg-red-600 text-lg font-medium text-white px-5 py-2 rounded-smal">Log Out</button>
 
         </div>
     )
