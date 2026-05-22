@@ -16,19 +16,23 @@ const App = () => {
   //   },[])
 
   const [user, useUser] = useSate(null)
-  const [loggedInUserData, setLoggedInUserData] = useState [null]
+  const [loggedInUserData, setLoggedInUserData] = useState[null]
   const authData = useContext(AuthContext)
 
-  
+
 
 
   const hadleLogin = (email, password) => {
     if (email === 'admin@me.com' && password === '123') {
       setUser('admin')
-
-    } else if (authData && authData.employees.find((e) => e.email && e.password == password)) {
-      setUser('employee')
-
+      localStorage.setItem('loggedInUser', JSON.stringify({ role: 'admin' }))
+    } else if (authData) {
+      const employee = authData.employees.find((e) => e.email && e.password == password)
+      if (employee) {
+        setUser('employee')
+        setLoggedInUserData(employee)
+        localStorage.setItem('loggedInUser', JSON.stringify({ role: 'employee' }))
+      }
 
     } else {
       alert("Invaild Credentails")
@@ -37,13 +41,15 @@ const App = () => {
 
 
 
-  return (
+  return
+   (
     <>
 
       {!user ? <Login handleLogin={handleLogin} /> : ''}
-      {user == 'admin' ? <AdminDashboard /> : <EmployeDashboard />}
+      {user == 'admin' ? <AdminDashboard /> : (user == employee ? <EmployeDashboard data={loggedInUserData} /> : null)}
 
-    </>)
+    </>
+  )
 }
 
 

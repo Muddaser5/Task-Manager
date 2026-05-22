@@ -1,6 +1,6 @@
 import React from "react";
 
-const Header = () => {
+const Header = ({data}) => {
 
 const logOut =() =>{
 localStorage.setItem('loggedInUser','')
