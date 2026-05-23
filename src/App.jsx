@@ -20,7 +20,7 @@ useEffect (() => {
     setLoggedInUserData(userData.role)
 localStorage.setItem('loggedInUser',JSON.stringify({role:'employee',data:employee}))
   }
-})
+},[])
 
 
   const hadleLogin = (email, password) => {
