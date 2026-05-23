@@ -9,17 +9,18 @@ import { AuthContext } from './context/AuthProvider'
 
 const App = () => {
 
-  //   useEffect (() => {
-  //     setLocalStorage()
-  // getLocalStorage()
-
-  //   },[])
-
   const [user, useUser] = useSate(null)
   const [loggedInUserData, setLoggedInUserData] = useState[null]
   const authData = useContext(AuthContext)
 
-
+useEffect (() => {
+  const loggedInUser= localStorage.getItem('loggedInUser')
+  if(loggedInUser){
+    const userData =JSON.parse(loggedInUser)
+    setLoggedInUserData(userData.role)
+localStorage.setItem('loggedInUser',JSON.stringify({role:'employee',data:employee}))
+  }
+})
 
 
   const hadleLogin = (email, password) => {
